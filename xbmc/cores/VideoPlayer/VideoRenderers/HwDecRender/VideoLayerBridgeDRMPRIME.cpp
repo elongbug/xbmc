@@ -147,13 +147,6 @@ void CVideoLayerBridgeDRMPRIME::Unmap(IVideoBufferDRMPRIME* buffer)
 void CVideoLayerBridgeDRMPRIME::Configure(IVideoBufferDRMPRIME* buffer)
 {
   struct plane* plane = m_DRM->GetVideoPlane();
-  if (m_DRM->SupportsProperty(plane, "COLOR_ENCODING") &&
-      m_DRM->SupportsProperty(plane, "COLOR_RANGE"))
-  {
-    m_DRM->AddProperty(plane, "COLOR_ENCODING", buffer->GetColorEncoding());
-    m_DRM->AddProperty(plane, "COLOR_RANGE", buffer->GetColorRange());
-  }
-
   struct connector* connector = m_DRM->GetConnector();
   if (m_DRM->SupportsProperty(connector, "HDR_OUTPUT_METADATA"))
   {
